@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.yp.ssm.dao.StudentDao">
+    <resultMap id="StudentMapper" type="Student">
+        <id property="sno" column="sno"/> <!--主键-->
+        <result property="name" column="sname"/>
+        <result property="age" column="sage"/>
+        <result property="dept" column="sdept"/>
+        <result property="sex" column="ssex"/>
+    </resultMap>
+    <insert id="insertStudent" >
+        insert into student (sno, sname, ssex, sage, sdept) values (#{sno}, #{name}, #{sex}, #{age}, #{dept})
+    </insert>
+
+    <select id="selectStudent" resultMap="StudentMapper">
+       select sno, sname, ssex, sage, sdept from student where sdept = #{dept} order by sage desc
+    </select>
+
+    <select id="selectOneStudent" resultMap="StudentMapper">
+        select sno, sname, ssex, sage, sdept from student where sno = #{sno} and sname = #{name}
+    </select>
+</mapper>
